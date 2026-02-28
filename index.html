@@ -15,6 +15,20 @@
             --dark-gray: #0a0a0a;
         }
 
+        /* Giriş Animasyonu Tanımları */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+                filter: blur(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+                filter: blur(0);
+            }
+        }
+
         body {
             background-color: var(--pure-black);
             color: #fff;
@@ -27,6 +41,7 @@
             background-image: 
                 radial-gradient(circle at 50% -20%, rgba(57, 255, 20, 0.15) 0%, transparent 50%),
                 radial-gradient(circle at 50% 120%, rgba(57, 255, 20, 0.05) 0%, transparent 50%);
+            overflow-x: hidden;
         }
 
         .container {
@@ -38,6 +53,9 @@
             text-align: center;
             width: 400px;
             box-shadow: 0 40px 100px rgba(0,0,0,0.8);
+            
+            /* Animasyon buraya uygulanıyor */
+            animation: fadeInUp 1.2s cubic-bezier(0.22, 1, 0.36, 1) both;
         }
 
         h1 {
