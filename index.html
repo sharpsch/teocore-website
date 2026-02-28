@@ -4,50 +4,54 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TEOCORE | Studio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --neon-green: #39ff14;
+            --dark-bg: #050505;
+        }
+
         body {
-            background-color: #050505;
+            background-color: var(--dark-bg);
             color: #fff;
             font-family: 'Inter', sans-serif;
             margin: 0;
             display: flex;
-            justify-content: center;
             align-items: center;
+            justify-content: center;
             min-height: 100vh;
-            background-image: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?auto=format&fit=crop&w=1000&q=80'); /* Arka plana prodüktör masası havası */
-            background-size: cover;
-            background-position: center;
+            background-image: radial-gradient(circle at center, rgba(57, 255, 20, 0.08) 0%, transparent 80%);
         }
 
-        .glass-container {
+        .container {
             background: rgba(255, 255, 255, 0.03);
             backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(57, 255, 20, 0.2);
             border-radius: 25px;
-            padding: 50px;
+            padding: 40px;
             text-align: center;
-            width: 400px;
-            box-shadow: 0 0 40px rgba(57, 255, 20, 0.1);
+            width: 380px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
         }
 
         h1 {
-            font-size: 2.5rem;
-            letter-spacing: 8px;
-            margin: 0;
-            color: #39ff14;
-            text-shadow: 0 0 20px #39ff14;
+            font-family: 'Syncopate', sans-serif;
+            font-size: 1.8rem;
+            letter-spacing: 6px;
+            color: var(--neon-green);
+            text-shadow: 0 0 15px var(--neon-green);
+            margin-bottom: 5px;
         }
 
-        .sub {
-            font-size: 0.9rem;
-            letter-spacing: 2px;
-            opacity: 0.7;
-            margin-top: 10px;
+        .tagline {
+            font-size: 0.8rem;
             text-transform: uppercase;
+            letter-spacing: 3px;
+            opacity: 0.6;
+            margin-bottom: 30px;
         }
 
         .links {
-            margin-top: 30px;
             display: flex;
             flex-direction: column;
             gap: 15px;
@@ -57,31 +61,55 @@
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(57, 255, 20, 0.3);
             color: #fff;
-            padding: 12px;
-            border-radius: 10px;
+            padding: 15px;
+            border-radius: 12px;
             text-decoration: none;
-            transition: all 0.3s;
-            font-weight: 500;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            font-weight: 600;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
         }
 
         .btn:hover {
-            background: #39ff14;
+            background: var(--neon-green);
             color: #000;
-            box-shadow: 0 0 25px #39ff14;
-            transform: scale(1.05);
+            box-shadow: 0 0 30px var(--neon-green);
+            transform: translateY(-3px);
+        }
+
+        .socials {
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            opacity: 0.8;
+        }
+
+        .social-icon {
+            color: #fff;
+            text-decoration: none;
+            font-size: 0.8rem;
+            border-bottom: 1px solid var(--neon-green);
+            padding-bottom: 2px;
         }
     </style>
 </head>
 <body>
-    <div class="glass-container">
+    <div class="container">
         <h1>TEOCORE</h1>
-        <div class="sub">DJ | Producer | Hardstyle Addict</div>
+        <div class="tagline">Hardstyle & Hardcore Studio</div>
         
         <div class="links">
-            <a href="#" class="btn">🚀 FL Studio Başlangıç Rehberi</a>
-            <a href="#" class="btn">🔊 Teocore Kick Pack Vol.1</a>
-            <a href="#" class="btn">🎧 My Tracks (SoundCloud)</a>
-            <a href="mailto:iletisim@teocore.studio" class="btn">📩 Contact (Titan Email)</a>
+            <a href="https://soundcloud.com/YOUR_USER" target="_blank" class="btn">🎵 LISTEN ON SOUNDCLOUD</a>
+            <a href="#" class="btn">🎹 PRODUCTION TUTORIALS</a>
+            <a href="#" class="btn">🥁 FREE KICK PACKS</a>
+            <a href="mailto:iletisim@teocore.studio" class="btn">✉️ CONTACT ME</a>
+        </div>
+
+        <div class="socials">
+            <a href="#" class="social-icon">INSTAGRAM</a>
+            <a href="#" class="social-icon">DISCORD</a>
+            <a href="#" class="social-icon">YOUTUBE</a>
         </div>
     </div>
 </body>
