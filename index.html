@@ -1,53 +1,157 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TEOCORE | Hardstyle Authority</title>
-    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@700&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@700&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
     <style>
-        :root { --neon-green: #39ff14; --dark-bg: #050505; }
-        body { background-color: var(--dark-bg); color: #fff; font-family: 'Inter', sans-serif; margin: 0; display: flex; align-items: center; justify-content: center; min-height: 100vh; background-image: radial-gradient(circle at center, rgba(57, 255, 20, 0.08) 0%, transparent 80%); }
-        
-        .container { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(15px); border: 1px solid rgba(57, 255, 20, 0.2); border-radius: 30px; padding: 50px 40px; text-align: center; width: 420px; box-shadow: 0 20px 50px rgba(0,0,0,0.5); }
-        
-        h1 { font-family: 'Syncopate', sans-serif; font-size: 2rem; letter-spacing: 8px; color: var(--neon-green); text-shadow: 0 0 20px var(--neon-green); margin-bottom: 5px; }
-        .tagline { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 4px; opacity: 0.6; margin-bottom: 40px; font-weight: 800; }
+        :root {
+            --neon-green: #39ff14;
+            --pure-black: #000000;
+            --dark-gray: #0a0a0a;
+        }
 
-        .section-title { font-size: 0.7rem; color: var(--neon-green); text-align: left; margin-left: 5px; margin-bottom: 8px; letter-spacing: 2px; text-transform: uppercase; }
-        
-        .links { display: flex; flex-direction: column; gap: 12px; margin-bottom: 30px; }
-        
-        .btn { background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(57, 255, 20, 0.2); color: #fff; padding: 18px; border-radius: 15px; text-decoration: none; transition: all 0.3s ease; font-weight: 600; font-size: 0.85rem; letter-spacing: 1px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; }
-        .btn:hover { background: var(--neon-green); color: #000; box-shadow: 0 0 30px var(--neon-green); transform: scale(1.02); }
-        
-        .btn-premium { border: 1px solid var(--neon-green); background: rgba(57, 255, 20, 0.05); }
+        body {
+            background-color: var(--pure-black);
+            color: #fff;
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background-image: 
+                radial-gradient(circle at 50% -20%, rgba(57, 255, 20, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 50% 120%, rgba(57, 255, 20, 0.05) 0%, transparent 50%);
+        }
 
-        .status-card { background: rgba(0,0,0,0.4); padding: 15px; border-radius: 12px; font-size: 0.8rem; border-left: 3px solid var(--neon-green); text-align: left; line-height: 1.5; }
-        
-        .success-copy { color: var(--neon-green) !important; border-color: var(--neon-green) !important; }
+        .container {
+            background: rgba(10, 10, 10, 0.8);
+            backdrop-filter: blur(25px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 50px 30px;
+            text-align: center;
+            width: 400px;
+            box-shadow: 0 40px 100px rgba(0,0,0,0.8);
+        }
+
+        h1 {
+            font-family: 'Syncopate', sans-serif;
+            font-size: 2.2rem;
+            letter-spacing: 10px;
+            color: #fff;
+            margin-bottom: 5px;
+            text-shadow: 0 0 20px rgba(57, 255, 20, 0.3);
+        }
+
+        .tagline {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            color: var(--neon-green);
+            margin-bottom: 45px;
+            font-weight: 800;
+        }
+
+        .section-header {
+            font-size: 0.65rem;
+            color: rgba(255, 255, 255, 0.4);
+            text-align: left;
+            margin: 25px 0 10px 5px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        .links {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .btn {
+            background: var(--dark-gray);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            color: #efefef;
+            padding: 16px;
+            border-radius: 12px;
+            text-decoration: none;
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            font-weight: 600;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        .btn:hover {
+            border-color: var(--neon-green);
+            color: var(--neon-green);
+            background: rgba(57, 255, 20, 0.02);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(57, 255, 20, 0.1);
+        }
+
+        .btn-featured {
+            border: 1px solid rgba(57, 255, 20, 0.4);
+            background: rgba(57, 255, 20, 0.03);
+        }
+
+        .btn-success {
+            color: var(--neon-green) !important;
+            border-color: var(--neon-green) !important;
+        }
+
+        .footer-status {
+            margin-top: 40px;
+            padding-top: 25px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.5);
+            line-height: 1.6;
+        }
+
+        .status-dot {
+            display: inline-block;
+            width: 6px;
+            height: 6px;
+            background-color: var(--neon-green);
+            border-radius: 50%;
+            margin-right: 8px;
+            box-shadow: 0 0 10px var(--neon-green);
+        }
     </style>
 </head>
 <body>
 
     <div class="container">
         <h1>TEOCORE</h1>
-        <div class="tagline">The Hardstyle Lab</div>
+        <div class="tagline">HARDSTYLE AUTHORITY</div>
         
-        <div class="section-title">Artist Services</div>
+        <div class="section-header">Exclusive Content</div>
         <div class="links">
-            <a href="mailto:iletisim@teocore.studio?subject=Demo Feedback" class="btn btn-premium">📩 DEMO FEEDBACK (SEND YOUR TRACK)</a>
+            <a href="https://on.soundcloud.com/3etQD5lZFmekmk7dZc" target="_blank" class="btn btn-featured">🔥 MOST POPULAR TRACK</a>
+            <a href="https://on.soundcloud.com/ZjDxDL0DecuBNEPm36" target="_blank" class="btn">🚀 LATEST RELEASE</a>
+        </div>
+
+        <div class="section-header">Artist Services</div>
+        <div class="links">
+            <a href="mailto:iletisim@teocore.studio?subject=Demo Submission" class="btn">📩 SUBMIT YOUR DEMO</a>
             <a href="javascript:void(0)" onclick="copyDiscord(this)" class="btn" id="discord-btn">🎹 1-ON-1 COACHING (DISCORD)</a>
         </div>
 
-        <div class="section-title">Listen & Learn</div>
+        <div class="section-header">Connect</div>
         <div class="links">
-            <a href="https://soundcloud.com/xteo" target="_blank" class="btn">🔊 SOUNDCLOUD PROFILE</a>
-            <a href="#" class="btn">🏗️ HARDSTYLE MASTERCLASS (SOON)</a>
+            <a href="https://soundcloud.com/na-814674907" target="_blank" class="btn">🎧 SOUNDCLOUD PROFILE</a>
         </div>
 
-        <div class="status-card">
-            <span style="color: var(--neon-green);">●</span> <strong>NOW:</strong> Mastering new rawstyle kicks. Available for technical feedback sessions.
+        <div class="footer-status">
+            <span class="status-dot"></span> CURRENTLY: ANALYZING NEW PRODUCTIONS. <br>OPEN FOR TECHNICAL CONSULTATION.
         </div>
     </div>
 
@@ -56,14 +160,15 @@
             const username = "xteo"; 
             navigator.clipboard.writeText(username).then(() => {
                 const originalText = element.innerText;
-                element.innerText = "✅ NICKNAME KOPYALANDI!";
-                element.classList.add('success-copy');
+                element.innerText = "✅ COPIED TO CLIPBOARD!";
+                element.classList.add('btn-success');
                 setTimeout(() => {
                     element.innerText = originalText;
-                    element.classList.remove('success-copy');
+                    element.classList.remove('btn-success');
                 }, 2000);
             });
         }
     </script>
+
 </body>
 </html>
