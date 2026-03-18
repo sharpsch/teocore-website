@@ -22,9 +22,9 @@
 </head>
 <body>
 
-    <h1 class="glitch-text text-4xl md:text-6xl font-black uppercase italic">THE <span class="text-cyan-400">VAULT</span></h1>
+    <h1 class="glitch-text text-4xl md:text-6xl font-black uppercase italic tracking-tighter">THE <span class="text-cyan-400">VAULT</span></h1>
     
-    <div id="cards-container" class="grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-6xl mb-12"></div>
+    <div id="cards-container" class="grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-6xl mb-12 text-center"></div>
 
     <div class="w-full max-w-6xl">
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12 text-center">
@@ -36,9 +36,9 @@
                 <p class="text-[10px] text-red-500 uppercase font-bold mb-1 italic tracking-widest">Kasanın Babası</p>
                 <p id="total-king" class="text-xl font-black italic uppercase text-white">-</p>
             </div>
-            <div class="stat-card border-cyan-500/30">
-                <p class="text-[10px] text-cyan-500 uppercase font-bold mb-1 italic tracking-widest text-right">Toplam Kasa</p>
-                <p id="total-vault" class="text-xl font-black italic text-right text-white">0 TL</p>
+            <div class="stat-card border-cyan-500/30 text-right">
+                <p class="text-[10px] text-cyan-500 uppercase font-bold mb-1 italic tracking-widest">Toplam Kasa</p>
+                <p id="total-vault" class="text-xl font-black italic text-white">0 TL</p>
             </div>
         </div>
 
@@ -46,24 +46,27 @@
             <div class="glass-card p-6">
                 <div class="flex justify-between items-center mb-4 border-b border-white/10 pb-2">
                     <h3 class="text-xs font-black text-cyan-400 uppercase italic">TAHSİLAT DEFTERİ</h3>
-                    <button onclick="toggleAdmin()" class="text-[9px] text-gray-700 hover:text-white transition uppercase">Admin Girişi</button>
+                    <button onclick="toggleAdmin()" class="text-[9px] text-gray-700 hover:text-white transition uppercase">Admin Yetkisi</button>
                 </div>
                 
                 <div id="logs-list" class="log-container flex flex-col-reverse space-y-2"></div>
                 
                 <div id="admin-panel" class="hidden mt-6 pt-4 border-t border-red-900/50">
-                    <input type="password" id="admin-pass" placeholder="ŞİFRE" class="w-full bg-black/50 border border-red-900/50 p-3 rounded-xl text-center text-xs mb-3 focus:outline-none">
-                    <button onclick="clearLogsWithStamp()" class="w-full bg-red-900/40 border border-red-500 text-red-500 py-3 rounded-xl font-black uppercase text-[10px] hover:bg-red-600 hover:text-white transition">DEFTERİ TEMİZLE VE MÜHÜRLE</button>
+                    <p class="text-[9px] text-gray-500 mb-2 uppercase text-center italic">Sadece defter temizliği ve borç düzenleme yetkisi</p>
+                    <input type="password" id="admin-pass" placeholder="ADMİN ANAHTARI" class="w-full bg-black/50 border border-red-900/50 p-3 rounded-xl text-center text-xs mb-3 focus:outline-none">
+                    <div class="flex gap-2">
+                        <button onclick="clearLogsWithStamp()" class="flex-1 bg-red-900/40 border border-red-500 text-red-500 py-3 rounded-xl font-black uppercase text-[9px] hover:bg-red-600 hover:text-white transition">DEFTERİ SÜPÜR VE MÜHÜRLE</button>
+                    </div>
                 </div>
             </div>
 
             <div class="glass-card p-6 text-right relative overflow-hidden">
                 <div class="absolute -right-4 -bottom-4 opacity-5 text-6xl font-black italic uppercase">VAULT</div>
                 <p class="text-red-600 font-black mb-4 italic uppercase text-sm border-b border-red-900/30 pb-2">KASA RACONU</p>
-                <ul class="text-[11px] text-gray-400 space-y-3 list-none font-medium">
-                    <li>Küfür bedeli 50 TL'dir, itiraz hakkı yoktur.</li>
-                    <li>Defter temizliği sadece ödeme sonrası yapılır.</li>
-                    <li>Sıfırlama işlemi kayıt altına alınır, geri dönüşü yoktur.</li>
+                <ul class="text-[11px] text-gray-400 space-y-3 list-none font-medium leading-relaxed">
+                    <li>Küfür bedeli <b>50 TL</b>'dir.</li>
+                    <li>Tahsilat defteri belirli aralıklarla temizlenir ancak borçlar bakidir.</li>
+                    <li>Defter temizliği mühürle kayıt altına alınır.</li>
                     <li class="text-cyan-500 font-black uppercase italic mt-6 text-xs">PARA YAZIN EZİLECEKTİR.</li>
                 </ul>
             </div>
@@ -84,7 +87,7 @@
         const db = firebase.database();
         const users = [{id:'arda', name:'ARDA', color:'#00f2ff'}, {id:'recep', name:'RECEP', color:'#bc4ed8'}, {id:'emir', name:'EMİR', color:'#f8ef42'}];
 
-        // VERİLERİ ÇEK
+        // BORÇLARI ÇEK
         db.ref('vault').on('value', (s) => {
             const data = s.val() || {};
             const container = document.getElementById('cards-container');
@@ -100,8 +103,12 @@
                     <div class="absolute top-0 left-0 w-full h-1" style="background:${u.color}"></div>
                     <h2 class="text-xs font-black text-gray-500 mb-2 uppercase italic tracking-widest">${u.name}</h2>
                     <div class="text-7xl font-black mb-8">${bal}<span class="text-sm text-gray-600 ml-1 italic font-normal">TL</span></div>
-                    <button onclick="updateBalance('${u.id}', 50, '${u.name}')" 
-                            class="btn-plus w-full py-6 rounded-2xl font-black text-xs active:scale-95 transition uppercase italic">KÜFÜR EKLE</button>
+                    <div class="flex flex-col gap-2 w-full">
+                        <button onclick="updateBalance('${u.id}', 50, '${u.name}')" 
+                                class="btn-plus w-full py-6 rounded-2xl font-black text-xs active:scale-95 transition uppercase italic">KÜFÜR EKLE</button>
+                        <button id="del-${u.id}" onclick="updateBalance('${u.id}', -50, '${u.name}')" 
+                                class="hidden text-[8px] text-red-900 hover:text-red-500 uppercase font-bold transition">Hata Düzelt (-50)</button>
+                    </div>
                 </div>`;
             });
             document.getElementById('total-vault').innerText = total + " TL";
@@ -120,7 +127,7 @@
                 if(!isStamp && l.date === today && l.amount > 0) daily[l.userName] = (daily[l.userName] || 0) + l.amount;
                 list.innerHTML += `<div class="p-2 border-l-2 mb-1 ${isStamp ? 'admin-stamp' : 'border-white/5 bg-white/5'}">
                     <span class="opacity-30 text-[8px] font-bold tracking-widest">${l.date} | ${l.time}</span> <br>
-                    ${isStamp ? l.msg : `<b>${l.userName}</b>: +${l.amount} TL`}
+                    ${isStamp ? l.msg : `<b>${l.userName}</b>: ${l.amount > 0 ? '+' : ''}${l.amount} TL`}
                 </div>`;
             });
             let dKing = "-"; let dMax = 0;
@@ -129,38 +136,48 @@
         });
 
         function updateBalance(uid, amt, name) {
-            db.ref('vault/'+uid).transaction(c => (c||0)+amt);
+            db.ref('vault/'+uid).transaction(c => (c||0)+amt < 0 ? 0 : (c||0)+amt);
             const n = new Date();
             db.ref('logs').push({userName: name, amount: amt, date: n.toLocaleDateString('tr-TR'), time: n.getHours().toString().padStart(2,'0')+":"+n.getMinutes().toString().padStart(2,'0'), type: 'ENTRY'});
         }
 
         function toggleAdmin() {
             const p = document.getElementById('admin-panel');
-            p.classList.toggle('hidden');
+            const isAdmin = !p.classList.contains('hidden');
+            const input = document.getElementById('admin-pass').value;
+
+            if(!isAdmin) {
+                p.classList.remove('hidden');
+            } else {
+                if(input === 'admin99') {
+                    // Admin şifresi doğruysa silme butonlarını da göster/gizle
+                    users.forEach(u => document.getElementById('del-'+u.id).classList.toggle('hidden'));
+                    p.classList.add('hidden');
+                } else {
+                    p.classList.add('hidden');
+                }
+            }
         }
 
         function clearLogsWithStamp() {
             const pass = document.getElementById('admin-pass').value;
             if(pass === 'admin99') {
-                if(confirm("TÜM DEFTERİ SİLİP MÜHÜRLEMEK İSTEDİĞİNE EMİN MİSİN?")) {
+                if(confirm("DİKKAT: BORÇLAR SİLİNMEYECEK, SADECE DEFTER TEMİZLENECEK. EMİN MİSİN?")) {
                     const n = new Date();
                     const d = n.toLocaleDateString('tr-TR');
                     const t = n.getHours().toString().padStart(2,'0')+":"+n.getMinutes().toString().padStart(2,'0');
                     
-                    // Borçları sıfırla
-                    users.forEach(u => db.ref('vault/'+u.id).set(0));
-                    
-                    // Logları sil ve mühür ekle
+                    // Sadece logları sil ve mühür ekle (Vault/Borçlar ellenmez)
                     db.ref('logs').set({
-                        "first_stamp": {
+                        "cleanup_stamp": {
                             type: 'STAMP',
-                            msg: `DEFTER ADMİN TARAFINDAN TEMİZLENDİ`,
+                            msg: `TAHSİLAT DEFTERİ ADMİN TARAFINDAN TEMİZLENDİ`,
                             date: d,
                             time: t
                         }
                     });
                     document.getElementById('admin-pass').value = '';
-                    toggleAdmin();
+                    document.getElementById('admin-panel').classList.add('hidden');
                 }
             } else { alert("HATALI ŞİFRE!"); }
         }
